@@ -8,10 +8,6 @@ import AddTaskForm from '../component/AddTodoForm'
 import { genId } from '../idGenerator'
 
 type HomeProps = {}
-// type HomeState = {
-//   todos: Todo[]
-// }
-
 type HomeState = Todo[]
 
 const initialState: HomeState = [
