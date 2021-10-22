@@ -5,13 +5,13 @@ type AddTodoFormProps = {
 }
 
 type AddTodoFormState = {
-  taskName: string,
-  taskText: string,
+  todoName: string,
+  todoText: string,
 }
 
 const initialState: AddTodoFormState = {
-  taskName: 'New Task',
-  taskText: 'add description',
+  todoName: 'New Task',
+  todoText: 'add description',
 }
 
 export default class AddTodoForm extends React.Component<AddTodoFormProps, AddTodoFormState> {
@@ -33,22 +33,22 @@ export default class AddTodoForm extends React.Component<AddTodoFormProps, AddTo
 
   addTodo() {
     this.props.handleAddTodo({
-      name: this.state.taskName,
-      text: this.state.taskText,
+      name: this.state.todoName,
+      text: this.state.todoText,
     });
   }
 
   handleTodoNameChange(e: React.ChangeEvent<HTMLInputElement>) {
     this.setState({
       ...this.state,
-      taskName: e.target.value
+      todoName: e.target.value
     });
   }
 
   handleTodoTextChange(e: React.ChangeEvent<HTMLInputElement>) {
     this.setState({
       ...this.state,
-      taskText: e.target.value
+      todoText: e.target.value
     });
   }
 
@@ -64,18 +64,18 @@ export default class AddTodoForm extends React.Component<AddTodoFormProps, AddTo
   }
 
   render() {
-    const {taskName, taskText} = this.state;
+    const {todoName, todoText} = this.state;
 
     return (
-      <form name="add-task-from" ref={this.form} onSubmit={this.handleSubmit}>
-        <label htmlFor="add-task-name">
+      <form name="add-todo-from" className="add-todo-form" ref={this.form} onSubmit={this.handleSubmit}>
+        <label htmlFor="add-todo-name">
           Task name:
         </label>
-        <input type="text" id="add-task-task-name" value={taskName} onChange={this.handleTodoNameChange} required/>
-        <label htmlFor="add-task-text">
+        <input type="text" id="add-todo-todo-name" value={todoName} onChange={this.handleTodoNameChange} required/>
+        <label htmlFor="add-todo-text">
           Task description:
         </label>
-        <input type="text" id="add-task-task-text" value={taskText} onChange={this.handleTodoTextChange} />
+        <input type="text" id="add-todo-todo-text" value={todoText} onChange={this.handleTodoTextChange} />
         <button type="submit" >Add new Task</button>
       </form>
     );

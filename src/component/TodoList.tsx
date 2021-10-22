@@ -17,9 +17,11 @@ export default class TodoList extends React.Component<TodoListProps> {
   render() {
     const {todos, actions} = this.props;
 
+    const content = todos.length > 0 ? todos.map(todo => <TodoListItem key={uuid()} todo={todo} actions={actions} />) : "No tasks" 
+
     return (
       <div className="todo-list">
-        {todos.map(todo => <TodoListItem key={uuid()} todo={todo} actions={actions} />)}
+        {content}
       </div>
     );
   }

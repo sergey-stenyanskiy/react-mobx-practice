@@ -17,7 +17,7 @@ const initialState: HomeState = {
     {
       id: genId.next(),
       name: 'dishes',
-      text: 'wash the dishes',
+      text: 'do the dishes',
       status: TodoStatus.ACTIVE
     },
     {
@@ -145,14 +145,14 @@ export default class Home extends React.Component<HomeProps, HomeState> {
     }
 
     return (
-      <>
+      <main className="home">
         <TodoList todos={todos} actions={actions}  />
         <AddTaskForm handleAddTodo={this.addTodo}/>
         <div className="actions">
           <button type="button" onClick={this.completeAllTodos}>All completed</button>
           <button type="button" onClick={this.removeCompleted}>Remove Completed</button>
         </div>
-      </>
+      </main>
     );
   }
 }

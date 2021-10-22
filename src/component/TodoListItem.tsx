@@ -74,13 +74,17 @@ export default class TodoListItem extends React.Component<TodoProps> {
 
     return (
       <div className="todo-item">
-        <div className="todo-id">{todo.id}</div>
-        <input type="text" className="todo-name" id={`todo-name-${todo.id}`} defaultValue={todo.name} ref={this.editName}/>
-        <input type="text" className="todo-text" id={`todo-text-${todo.id}`} defaultValue={todo.text} ref={this.editText}/>
-        <div className={statusClass}>{todo.status.toUpperCase()}</div>
-        <button type="button" onClick={this.handleEdit}>edit</button>
-        <button type="button" onClick={this.handleToggle}>toggle</button>
-        <button type="button" onClick={this.handleRemove}>remove</button>
+        Task:
+        <div style={{marginBottom: "4px"}} />
+        <div className="todo-item-content">
+          <div className="todo-id">id: {todo.id}</div>
+          <input type="text" className="todo-name" id={`todo-name-${todo.id}`} defaultValue={todo.name} ref={this.editName}/>
+          <input type="text" className="todo-text" id={`todo-text-${todo.id}`} defaultValue={todo.text} ref={this.editText}/>
+          <div className={statusClass}>{todo.status.toUpperCase()}</div>
+          <button type="button" onClick={this.handleEdit}>/ edit</button>
+          <button type="button" onClick={this.handleToggle}>+ toggle</button>
+          <button type="button" onClick={this.handleRemove}>x remove</button>
+        </div>
       </div>
     );
   }

@@ -6,24 +6,65 @@ html {
   box-sizing: border-box;
 }
 
-body {
-  margin: 0
+main {
+  display: flex;
+  flex-direction: column;
 }
 
 .todo-list {
   display: flex;
   flex-direction: column;
+
+  margin-bottom: 24px;
 }
 
 .todo-item {
+  margin-bottom: 12px;
+}
+
+.todo-item:last-child {
+  margin-bottom: 0;
+}
+
+.todo-item-content {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
-.todo-item > * {
-  margin-right: 8px;
+.todo-item-content > * {
+  margin-right: 12px;
 }
 
-.todo-item > *:last-child {
+.todo-item-content > *:last-child {
   margin-right: 0;
+}
+
+.todo-name {
+  width: 100px;
+}
+
+.todo-description {
+  width: 150px;
+}
+
+.todo-status {
+  width: 96px;
+  overflow-x: hidden;
+}
+
+.add-todo-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  margin-bottom: 16px;
+}
+
+.add-todo-form > * {
+  margin-bottom: 8px;
+}
+
+.add-todo-form > *:last-child {
+  margin-bottom: 0;
 }
