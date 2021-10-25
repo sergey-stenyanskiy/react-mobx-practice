@@ -5,7 +5,7 @@ import TodoStatus from '../TodoStatus'
 import TodoList from '../component/TodoList'
 import AddTaskForm from '../component/AddTodoForm'
 
-import { genId } from '../idGenerator'
+import { genId } from '../util/idGenerator'
 
 type HomeProps = {}
 type HomeState = Todo[]
@@ -13,7 +13,7 @@ type HomeState = Todo[]
 const initialState: HomeState = [
   {
     id: genId.next(),
-    name: 'dishes',
+    name: '',
     text: 'do the dishes',
     status: TodoStatus.ACTIVE
   },
@@ -22,6 +22,24 @@ const initialState: HomeState = [
     name: 'doggy',
     text: 'walk the dog',
     status: TodoStatus.ACTIVE
+  },
+  {
+    id: genId.next(),
+    name: 'sleep',
+    text: 'zzzz',
+    status: TodoStatus.COMPLETED
+  },
+  {
+    id: genId.next(),
+    name: 'sleep',
+    text: 'zzzz',
+    status: TodoStatus.COMPLETED
+  },
+  {
+    id: genId.next(),
+    name: 'sleep',
+    text: 'zzzz',
+    status: TodoStatus.COMPLETED
   },
   {
     id: genId.next(),

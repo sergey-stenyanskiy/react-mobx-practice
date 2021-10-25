@@ -21,3 +21,8 @@ declare type TodoActions = {
   remove: (id: number) => void,
   edit: (id: number, data: EditTodoData) => void,
 }
+
+declare module "*.svg" {
+  const content: any;
+  export default content;
+}
