@@ -16,7 +16,7 @@ type HomeState = Todo[]
 const initialState: HomeState = [
   {
     id: genId.next(),
-    name: '',
+    name: 'dishes',
     text: 'do the dishes',
     status: TodoStatus.ACTIVE
   },

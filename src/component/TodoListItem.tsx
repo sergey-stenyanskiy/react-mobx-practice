@@ -1,4 +1,4 @@
-import React, { useState, useEffect, MutableRefObject } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { useRef } from 'react'
 
@@ -44,6 +44,10 @@ export default ({
     hidden.current = !hidden.current;
   }
 
+  function handleActionsClick(e: React.MouseEvent<HTMLButtonElement>) {
+    toggleActionsList();
+  }
+
   function handleToggle(e: React.MouseEvent<HTMLButtonElement>) {
     actions.toggle(todo.id);
   }
@@ -59,14 +63,10 @@ export default ({
 
   function listActionRemove() {
     actions.remove(todo.id);
-
-    toggleActionsList();
   }
 
   function listActionEdit() {
     editName.current!.focus();
-
-    toggleActionsList();
   }
 
   const listActions = {
@@ -121,7 +121,7 @@ export default ({
             <div style={{marginRight: "8px"}}/>
             {capitalizeFirstLetter(todo.status)}
           </button>
-          <button type="button" className="todo-button todo-button-actions" onClick={toggleActionsList} ref={actionsButton}>
+          <button type="button" className="todo-button todo-button-actions" onClick={handleActionsClick} ref={actionsButton}>
             <SVG src={dotsIcon} className="todo-svg-icon"/>
             <TodoActionsList actions={listActions} hidden={actionsHidden} actionsListRef={actionsList}/>
           </button>
