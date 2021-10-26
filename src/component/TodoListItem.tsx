@@ -6,6 +6,8 @@ import classnames from 'classnames'
 
 import SVG from 'react-inlinesvg'
 
+import styled from 'styled-components'
+
 import activeIcon from '../asset/play.svg'
 import editIcon from '../asset/edit.svg'
 import completedIcon from '../asset/tick.svg'
@@ -13,8 +15,69 @@ import dotsIcon from '../asset/dots-three-vertical.svg'
 
 import TodoStatus from '../TodoStatus'
 
+import TodoButton from './TodoButton'
+import SVGIcon from './SVGIcon'
 import TodoActionsList from './TodoActionsList'
 import TextInput from './TextInput'
+
+const TodoButtonStatus = styled(TodoButton)`
+width: 120px;
+`;
+
+const TodoButtonActions = styled(TodoButton)`
+position: relative;
+
+width: 24px;
+height: 24px;
+
+display: flex;
+flex-direction: row;
+justify-content: center;
+
+border-radius: 4px;
+transition: background-color, 0.1s ease-in;
+cursor: pointer;
+
+&:hover {
+  background: #F6F6F6;
+}
+`;
+
+const TodoItemContent = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+`;
+
+const TodoItemLeading = styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+`;
+
+const TodoItemTrailing = styled(TodoItemLeading)``;
+
+const TodoItem = styled.div`
+margin-bottom: 12px;
+border-radius: 6px;
+
+padding: 8px 16px;
+background: white;
+
+box-shadow: 0px 0px 4px 8px rgba(0,0,0,0.008);
+
+&:last-child {
+  margin-bottom: 0;
+}
+`;
+
+const TodoInputName = styled(TextInput)`
+width: 100px;
+`;
+
+const TodoInputText = styled(TextInput)`
+width: 200px;
+`;
 
 import { capitalizeFirstLetter } from '../util/capitalize'
 
@@ -102,31 +165,31 @@ export default ({
   }
 
   return (
-    <div className="todo-item">
-      <div className="todo-item-content">
-        <div className="todo-item-leading">
-          <TextInput label="Task" id={`todo-name-${todo.id}`} className="todo-name" defaultValue={todo.name} inputRef={editName} />
+    <TodoItem className="todo-item">
+      <TodoItemContent className="todo-item-content">
+        <TodoItemLeading className="todo-item-leading">
+          <TodoInputName label="Task" id={`todo-name-${todo.id}`} className="todo-name" defaultValue={todo.name} inputRef={editName} />
           <div style={{marginRight: "24px"}}/>
-          <TextInput label="Description" id={`todo-text-${todo.id}`} className="todo-text" defaultValue={todo.text} inputRef={editText} />
+          <TodoInputText label="Description" id={`todo-text-${todo.id}`} className="todo-text" defaultValue={todo.text} inputRef={editText} />
           <div style={{marginRight: "24px"}}/>
-          <button type="button" className={classnames("todo-button", {hidden: !editing})} onClick={handleEdit} ref={saveButton}>
-            <SVG src={editIcon} className="todo-svg-icon"/>
+          <TodoButton type="button" className={classnames("todo-button", {hidden: !editing})} onClick={handleEdit} buttonRef={saveButton}>
+            <SVGIcon src={editIcon} />
             <div style={{marginRight: "8px"}}/>
             Save
-          </button>
-        </div>
-        <div className="todo-item-trailing">
-          <button type="button" className="todo-button todo-button-status" onClick={handleToggle}>
-            <SVG src={todo.status === TodoStatus.ACTIVE ? activeIcon : completedIcon} className="todo-svg-icon"/>
+          </TodoButton>
+        </TodoItemLeading>
+        <TodoItemTrailing className="todo-item-trailing">
+          <TodoButtonStatus type="button" onClick={handleToggle}>
+            <SVGIcon src={todo.status === TodoStatus.ACTIVE ? activeIcon : completedIcon} />
             <div style={{marginRight: "8px"}}/>
             {capitalizeFirstLetter(todo.status)}
-          </button>
-          <button type="button" className="todo-button todo-button-actions" onClick={handleActionsClick} ref={actionsButton}>
-            <SVG src={dotsIcon} className="todo-svg-icon"/>
+          </TodoButtonStatus>
+          <TodoButtonActions type="button" onClick={handleActionsClick} buttonRef={actionsButton}>
+            <SVGIcon src={dotsIcon} />
             <TodoActionsList actions={listActions} hidden={actionsHidden} actionsListRef={actionsList}/>
-          </button>
-        </div>
-      </div>
-    </div>
+          </TodoButtonActions>
+        </TodoItemTrailing>
+      </TodoItemContent>
+    </TodoItem>
   );
 }

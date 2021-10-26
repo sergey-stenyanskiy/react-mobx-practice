@@ -5,7 +5,11 @@ import TodoStatus from '../TodoStatus'
 import TodoList from '../component/TodoList'
 import AddTaskForm from '../component/AddTodoForm'
 
+import Divider from '../component/Divider'
+
 import RoundedButton from '../component/RoundedButton'
+
+import styled from 'styled-components'
 
 
 import { genId } from '../util/idGenerator'
@@ -51,6 +55,24 @@ const initialState: HomeState = [
     status: TodoStatus.COMPLETED
   },
 ]
+
+const Home = styled.main`
+display: flex;
+flex-direction: column;
+
+width: 920px;
+
+margin: auto;
+
+padding: 16px;
+background: #E4E7EB;
+`;
+
+const Actions = styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+`;
 
 export default () => {
   const [todos, setTodos] = useState(initialState);
@@ -132,15 +154,16 @@ export default () => {
   }
 
   return (
-    <main className="home">
+    <Home>
       <TodoList todos={todos} actions={actions}  />
-      <hr className="divider" />
+      <Divider />
       <AddTaskForm handleAddTodo={addTodo}/>
-      <div className="actions">
+      {/* <div className="actions"> */}
+      <Actions>
         <RoundedButton onClick={completeAllTodos} label="All completed" />
         <div style={{marginRight: "24px"}} />
         <RoundedButton onClick={removeCompleted} label="Remove Completed" primaryColor="red"/>
-      </div>
-    </main>
+      </Actions>
+    </Home>
   );
 }

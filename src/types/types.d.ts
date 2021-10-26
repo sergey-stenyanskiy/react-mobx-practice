@@ -27,10 +27,26 @@ declare type TodoListActions = {
   remove: () => void
 }
 
-declare type ButtonPrimaryColors = "red" | "blue" | "white" | "transparent" | "green"
-declare type ButtonTextColors = "white" | "black"
+declare type ButtonPrimaryColors = {
+  [index: string]: string
+
+  red: "#EB5757"
+  green: "#27AE60"
+  blue: "#3C4FF4"
+  white: "white"
+  transparent: "transparent"
+}
+
+declare type ButtonTextColors = {
+  [index: string]: string
+
+  white: "white"
+  black: "black"
+}
 
 declare module "*.svg" {
   const content: any;
   export default content;
 }
+
+declare type HTMLButtonType = "button" | "submit" | "reset"

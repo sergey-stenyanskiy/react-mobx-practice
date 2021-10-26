@@ -4,6 +4,15 @@ import TodoListItem from './TodoListItem'
 
 import {v4 as uuid} from 'uuid'
 
+import styled from 'styled-components'
+
+const TodoList = styled.div`
+display: flex;
+flex-direction: column;
+
+margin-bottom: 24px;
+`;
+
 type TodoListProps = {
   todos: Todo[],
   actions: TodoActions
@@ -13,8 +22,8 @@ export default ({todos, actions} : TodoListProps) => {
   const content = todos.length > 0 ? todos.map(todo => <TodoListItem key={uuid()} todo={todo} actions={actions} />) : "No tasks" 
   
   return (
-    <div className="todo-list">
+    <TodoList className="todo-list">
       {content}
-    </div>
+    </TodoList>
   );
 }
