@@ -6,6 +6,14 @@ module.exports = {
   },
   module: {
     rules: [
+      // {
+      //   test: /\.svg$/i,
+      //   use: ['@svgr/webpack'],
+      // },
+      {
+        test: /\.svg$/i,
+        use: ['file-loader'],
+      },
       {
         test: /\.tsx?$/,
         loader: 'babel-loader',
@@ -47,7 +55,7 @@ module.exports = {
         use: "pug-loader",
       },
       {
-        test: /\.(png|jpe?g|gif|webp|woff|woff2|svg)$/i,
+        test: /\.(png|jpe?g|gif|webp|woff|woff2)$/i,
         use: {
           loader: "file-loader",
           options: {

@@ -1,15 +1,15 @@
 import React from 'react'
 
-import SVG from 'react-inlinesvg'
-
 import styled from 'styled-components'
+
+import {ReactSVG} from 'react-svg'
 
 type SVGIconProps = {
   src: string
   className?: string
 }
 
-const SVGIcon = styled(SVG)`
+const SVGIcon = styled(ReactSVG)`
 width: 16px;
 height: 16px;
 display: block;

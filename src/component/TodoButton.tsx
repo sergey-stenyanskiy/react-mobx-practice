@@ -19,7 +19,7 @@ type TodoButtonProps = {
   name?: string
   className?: string
   type?: HTMLButtonType
-  children?: ReactNode[]
+  children?: ReactNode[] | ReactNode
   buttonRef?: React.RefObject<HTMLButtonElement>
 }
 

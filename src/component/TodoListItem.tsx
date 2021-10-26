@@ -4,8 +4,6 @@ import { useRef } from 'react'
 
 import classnames from 'classnames'
 
-import SVG from 'react-inlinesvg'
-
 import styled from 'styled-components'
 
 import activeIcon from '../asset/play.svg'
@@ -19,6 +17,8 @@ import TodoButton from './TodoButton'
 import SVGIcon from './SVGIcon'
 import TodoActionsList from './TodoActionsList'
 import TextInput from './TextInput'
+
+import {ReactSVG} from 'react-svg'
 
 const TodoButtonStatus = styled(TodoButton)`
 width: 120px;
@@ -173,10 +173,10 @@ export default ({
           <TodoInputText label="Description" id={`todo-text-${todo.id}`} className="todo-text" defaultValue={todo.text} inputRef={editText} />
           <div style={{marginRight: "24px"}}/>
           <TodoButton type="button" className={classnames("todo-button", {hidden: !editing})} onClick={handleEdit} buttonRef={saveButton}>
-            <SVGIcon src={editIcon} />
-            <div style={{marginRight: "8px"}}/>
-            Save
-          </TodoButton>
+              <SVGIcon src={editIcon} />
+              <div style={{marginRight: "8px"}}/>
+              Save
+            </TodoButton>
         </TodoItemLeading>
         <TodoItemTrailing className="todo-item-trailing">
           <TodoButtonStatus type="button" onClick={handleToggle}>
