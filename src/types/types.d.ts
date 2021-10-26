@@ -22,6 +22,14 @@ declare type TodoActions = {
   edit: (id: number, data: EditTodoData) => void,
 }
 
+declare type TodoListActions = {
+  edit: () => void
+  remove: () => void
+}
+
+declare type ButtonPrimaryColors = "red" | "blue" | "white" | "transparent" | "green"
+declare type ButtonTextColors = "white" | "black"
+
 declare module "*.svg" {
   const content: any;
   export default content;

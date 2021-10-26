@@ -33,10 +33,8 @@ export default ({
   const [actionsHidden, setActionsHidden] = useState(true);
   const [editing, setEditing] = useState(false);
 
-  const focusedInput = useRef<HTMLInputElement | null>(null);
-
-  const actionsButton = useRef(null);
-  const editButton = useRef(null);
+  const actionsButton = useRef<HTMLButtonElement>(null);
+  const saveButton = useRef<HTMLButtonElement>(null);
   
   const actionsList = useRef(null);
   const hidden = useRef(true);
@@ -58,20 +56,6 @@ export default ({
 
     setEditing(false);
   }
-  
-  function handleFocus(e: React.FocusEvent<HTMLInputElement>) {
-    setEditing(true);
-
-    focusedInput.current = e.target;
-  }
-
-  function handleBlur(e: React.FocusEvent) {
-    console.log(document.activeElement)
-
-    if (document.activeElement !== editButton.current) {
-      setEditing(false);
-    }
-  }
 
   function listActionRemove() {
     actions.remove(todo.id);
@@ -90,36 +74,42 @@ export default ({
     edit: listActionEdit,
   }
 
+  function checkFocus(e: FocusEvent) {
+    if (document.activeElement === editName.current 
+      || document.activeElement === editText.current) {
+        setEditing(true);
+      } else {
+        if (document.activeElement !== saveButton.current) {
+          setEditing(false);
+        }
+      }
+  }
+
   useEffect(() => {
+    document.addEventListener("focus", checkFocus, true);
     document.addEventListener("mousedown", handleClickOutside);
     
     return () => {
+      document.removeEventListener("focus", checkFocus, true);
       document.removeEventListener("mousedown", handleClickOutside);
     }
   }, []);
 
   function handleClickOutside(e: MouseEvent) {
-    if ( !hidden.current && e.target !== actionsList.current && e.target !== actionsButton.current) {
+    if (!hidden.current && e.target !== actionsList.current && e.target !== actionsButton.current) {
       toggleActionsList();
     }
   }
-
-  const statusClass = classnames("todo-status", `todo-status-${todo.status.split(" ").join("-")}`);
-
-  const indicatorIcon = todo.status === TodoStatus.ACTIVE ? activeIcon : completedIcon;
-
-  const showEdit = editing && document.activeElement !== null && (document.activeElement === editName.current || document.activeElement === editText.current);
 
   return (
     <div className="todo-item">
       <div className="todo-item-content">
         <div className="todo-item-leading">
-          <TextInput label="Task" id={`todo-name-${todo.id}`} className="todo-name" defaultValue={todo.name} inputRef={editName} onFocus={handleFocus} onBlur={handleBlur} required/>
+          <TextInput label="Task" id={`todo-name-${todo.id}`} className="todo-name" defaultValue={todo.name} inputRef={editName} />
           <div style={{marginRight: "24px"}}/>
-          <TextInput label="Description" id={`todo-text-${todo.id}`} className="todo-text" defaultValue={todo.text} inputRef={editText} onFocus={handleFocus} onBlur={handleBlur}/>
+          <TextInput label="Description" id={`todo-text-${todo.id}`} className="todo-text" defaultValue={todo.text} inputRef={editText} />
           <div style={{marginRight: "24px"}}/>
-          <button type="button" className={classnames("todo-button", {hidden: !showEdit})} onClick={handleEdit} ref={editButton}>
-          {/* <button type="button" className={classnames("todo-button", {hidden: false})} onClick={handleEdit} ref={actionsButton}> */}
+          <button type="button" className={classnames("todo-button", {hidden: !editing})} onClick={handleEdit} ref={saveButton}>
             <SVG src={editIcon} className="todo-svg-icon"/>
             <div style={{marginRight: "8px"}}/>
             Save
@@ -127,7 +117,7 @@ export default ({
         </div>
         <div className="todo-item-trailing">
           <button type="button" className="todo-button todo-button-status" onClick={handleToggle}>
-            <SVG src={indicatorIcon} className="todo-svg-icon"/>
+            <SVG src={todo.status === TodoStatus.ACTIVE ? activeIcon : completedIcon} className="todo-svg-icon"/>
             <div style={{marginRight: "8px"}}/>
             {capitalizeFirstLetter(todo.status)}
           </button>

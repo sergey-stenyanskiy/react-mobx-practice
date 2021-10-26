@@ -5,6 +5,9 @@ import TodoStatus from '../TodoStatus'
 import TodoList from '../component/TodoList'
 import AddTaskForm from '../component/AddTodoForm'
 
+import RoundedButton from '../component/RoundedButton'
+
+
 import { genId } from '../util/idGenerator'
 
 type HomeProps = {}
@@ -48,7 +51,6 @@ const initialState: HomeState = [
     status: TodoStatus.COMPLETED
   },
 ]
-
 
 export default () => {
   const [todos, setTodos] = useState(initialState);
@@ -132,10 +134,12 @@ export default () => {
   return (
     <main className="home">
       <TodoList todos={todos} actions={actions}  />
+      <hr className="divider" />
       <AddTaskForm handleAddTodo={addTodo}/>
       <div className="actions">
-        <button type="button" onClick={completeAllTodos}>All completed</button>
-        <button type="button" onClick={removeCompleted}>Remove Completed</button>
+        <RoundedButton onClick={completeAllTodos} label="All completed" />
+        <div style={{marginRight: "24px"}} />
+        <RoundedButton onClick={removeCompleted} label="Remove Completed" primaryColor="red"/>
       </div>
     </main>
   );

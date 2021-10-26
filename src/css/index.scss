@@ -28,6 +28,12 @@ main {
   background: #E4E7EB;
 }
 
+.actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .todo-list {
   display: flex;
   flex-direction: column;
@@ -74,20 +80,29 @@ main {
   overflow-x: hidden;
 }
 
-.add-todo-form {
+.add-todo-form h4 {
+  font-weight: normal;
+  margin: 16px 0;
+}
+
+.add-todo-form #add-todo-todo-name {
+  width: 100px;
+}
+
+.add-todo-form #add-todo-todo-text {
+  width: 200px;
+}
+
+.add-todo-form-group {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  flex-direction: row;
+  align-items: center;
 
   margin-bottom: 16px;
-}
 
-.add-todo-form > * {
-  margin-bottom: 8px;
-}
-
-.add-todo-form > *:last-child {
-  margin-bottom: 0;
+  padding: 8px 16px;
+  background: white;
+  border-radius: 6px;
 }
 
 .todo-button {
@@ -191,17 +206,13 @@ main {
 
 
 .text-input {
-  font-size: 16px;
-  padding-top: 12px;
-  // padding: 8px;
-  // border-radius: 4px;
-
   position: relative;
 
+  font-size: 16px;
+  padding-top: 12px;
   transition: 0.15s ease-in;
 
   background: white;
-
 }
 
 .text-input-input {
@@ -248,7 +259,6 @@ main {
   position: absolute;
   
   left: 0;
-  // left: 8px;
 
   font-size: 10px;
   bottom: 24px;
@@ -259,4 +269,49 @@ main {
 
 .hidden {
   visibility: hidden;
+}
+
+hr.divider {
+  margin: 0;
+  border: none;
+  border-bottom: 2px solid #bababa;
+}
+
+.todo-rounded-button {
+  cursor: pointer;
+  font-family: "Poppins";
+  border: none;
+  outline: none;
+  display: flex;
+  flex-direction: row;
+  padding: 12px 20px;
+  border-radius: 20px;
+}
+
+.rounded-button-primary-white {
+  background: white;
+}
+
+.rounded-button-primary-blue {
+  background: #3C4FF4;
+}
+
+.rounded-button-primary-green {
+  background: #27AE60;
+}
+
+.rounded-button-primary-red {
+  background: #EB5757;
+}
+
+.rounded-button-primary-transparent {
+  background: transparent;
+}
+
+.rounded-button-text-white {
+  color: white;
+}
+
+.rounded-button-text-black {
+  color: black;
 }

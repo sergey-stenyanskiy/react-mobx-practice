@@ -4,6 +4,10 @@ import {useState, useRef} from 'react'
 
 import TextInput from './TextInput'
 
+import SVG from 'react-inlinesvg'
+
+import addIcon from '../asset/add3.svg'
+
 type AddTodoFormProps = {
   handleAddTodo: (taskData: AddTodoData) => void
 }
@@ -53,18 +57,18 @@ export default ({ handleAddTodo } : AddTodoFormProps) => {
 
   return (
     <form name="add-todo-from" className="add-todo-form" ref={form} onSubmit={handleSubmit}>
-      <TextInput label="Task Name" id="add-todo-todo-name" value={todoName} onChange={handleTodoNameChange} required />
-      <TextInput label="Task Description" id="add-todo-todo-text" value={todoText} onChange={handleTodoTextChange} />
-{/*       
-      <label htmlFor="add-todo-name">
-        Task name:
-      </label>
-      <input type="text" id="add-todo-todo-name" value={todoName} onChange={handleTodoNameChange} required/>
-      <label htmlFor="add-todo-text">
-        Task description:
-      </label>
-      <input type="text" id="add-todo-todo-text" value={todoText} onChange={handleTodoTextChange} /> */}
-      <button type="submit" >Add new Task</button>
+      <h4>New task</h4>
+      <div className="add-todo-form-group">
+        <TextInput label="Task Name" id="add-todo-todo-name" value={todoName} onChange={handleTodoNameChange} required />
+        <div style={{marginRight: "24px"}}/>
+        <TextInput label="Task Description" id="add-todo-todo-text" value={todoText} onChange={handleTodoTextChange} />
+        <div style={{marginRight: "24px"}}/>
+        <button type="submit" className="todo-button">
+          <SVG src={addIcon} className="todo-svg-icon"/>
+          <div style={{marginRight: "8px"}} />
+          Add Task
+        </button>
+      </div>
     </form>
   ); 
 }

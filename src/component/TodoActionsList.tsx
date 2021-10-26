@@ -29,13 +29,6 @@ export default ({actions, hidden, actionsListRef} : TodoActionsListProps) => {
     actions.edit();
   }
 
-  function handleFocus(e: React.FocusEvent<HTMLInputElement>) {
-
-  }
-
-  function handleBlur(e: React.FocusEvent) {
-    
-  }
 
   return (
     <div className={acitonsClass} ref={actionsListRef}>
