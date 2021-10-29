@@ -18,7 +18,9 @@ import SVGIcon from './SVGIcon'
 import TodoActionsList from './TodoActionsList'
 import TextInput from './TextInput'
 
-import {ReactSVG} from 'react-svg'
+import { capitalizeFirstLetter } from '../util/capitalize'
+
+import {Todo, TodoActions} from '../types/types'
 
 const TodoButtonStatus = styled(TodoButton)`
 width: 120px;
@@ -79,7 +81,6 @@ const TodoInputText = styled(TextInput)`
 width: 200px;
 `;
 
-import { capitalizeFirstLetter } from '../util/capitalize'
 
 type TodoProps = {
   todo: Todo,

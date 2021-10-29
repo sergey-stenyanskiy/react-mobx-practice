@@ -7,6 +7,8 @@ import removeIcon from '../asset/recycle-bin-filled.svg'
 
 import SVGIcon from './SVGIcon'
 
+import { TodoListActions } from '../types/types'
+
 import styled from 'styled-components' 
 
 const TodoActionsList = styled.div`

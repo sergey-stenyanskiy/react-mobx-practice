@@ -2,6 +2,8 @@ import React from 'react'
 
 import {useState, useRef} from 'react'
 
+import { AddTodoData } from '../types/types'
+
 import SVGIcon from './SVGIcon'
 import TextInput from './TextInput'
 import TodoButton from './TodoButton'

@@ -1,5 +1,7 @@
 import React from 'react'
 
+import {Todo, TodoActions} from '../types/types'
+
 import TodoListItem from './TodoListItem'
 
 import styled from 'styled-components'
@@ -17,7 +19,7 @@ type TodoListProps = {
 }
 
 export default ({todos, actions} : TodoListProps) => {
-  const content = todos.length > 0 ? todos.map((todo, i) => <TodoListItem key={i} todo={todo} actions={actions} />) : "No tasks" 
+  const content = todos.length > 0 ? todos.map((todo, i) => <TodoListItem key={todo.id} todo={todo} actions={actions} />) : "No tasks" 
   
   return (
     <TodoList className="todo-list">

@@ -2,6 +2,8 @@ import React from 'react'
 
 import classnames from 'classnames'
 
+import { ButtonPrimaryColors, ButtonTextColors } from '../types/types'
+
 import styled from 'styled-components'
 
 const buttonPrimary: ButtonPrimaryColors = {

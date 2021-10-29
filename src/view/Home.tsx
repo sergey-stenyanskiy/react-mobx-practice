@@ -1,17 +1,14 @@
 import React, { useState } from 'react'
 
+import {Todo, AddTodoData, EditTodoData, TodoData} from '../types/types'
 import TodoStatus from '../TodoStatus'
 
 import TodoList from '../component/TodoList'
 import AddTaskForm from '../component/AddTodoForm'
-
 import Divider from '../component/Divider'
-
 import RoundedButton from '../component/RoundedButton'
 
 import styled from 'styled-components'
-
-
 import { genId } from '../util/idGenerator'
 
 type HomeState = Todo[]
@@ -120,7 +117,6 @@ export default () => {
       <TodoList todos={todos} actions={actions}  />
       <Divider />
       <AddTaskForm handleAddTodo={addTodo}/>
-      {/* <div className="actions"> */}
       <Actions>
         <RoundedButton onClick={completeAllTodos} label="All completed" />
         <div style={{marginRight: "24px"}} />

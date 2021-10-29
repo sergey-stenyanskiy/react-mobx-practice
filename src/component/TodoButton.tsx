@@ -1,5 +1,7 @@
 import React, { ReactNode } from 'react'
 
+
+import { HTMLButtonType } from '../types/types';
 import styled from 'styled-components'
 
 const Button = styled.button`
