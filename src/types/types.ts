@@ -1,3 +1,5 @@
+import React from 'react'
+
 import TodoStatus from '../TodoStatus'
 
 export type Todo = {
@@ -13,17 +15,26 @@ export type AddTodoData = Pick<Todo, "name" | "text">
 
 export type EditTodoData = AddTodoData
 
-export type TodoActions = {
-  toggle: (id: number) => void,
-  remove: (id: number) => void,
-  edit: (id: number, data: EditTodoData) => void,
+export type TodoVMActions = {
+  toggle: (id: number) => void
+  remove: (id: number) => void
+  edit: (id: number, data: EditTodoData) => void
+  completeAll: () => void
+  removeCompleted: () => void
+  add: (todoData: AddTodoData) => void
 }
+
+export type TodoVM = {
+  todos: Todo[]
+  actions: TodoVMActions
+}
+  
+export type TodoActions = Pick<TodoVMActions, "toggle" | "remove" | "edit">
 
 export type TodoListActions = {
   edit: () => void
   remove: () => void
 }
-
 
 export type ButtonPrimaryColors = {
   [index: string]: string
