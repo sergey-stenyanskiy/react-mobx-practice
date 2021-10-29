@@ -1,93 +1,29 @@
-import React, { useState, useEffect } from 'react'
-
-import { useRef } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 
 import classnames from 'classnames'
 
-import styled from 'styled-components'
+import { capitalizeFirstLetter } from '../../util/capitalize'
 
-import activeIcon from '../asset/play.svg'
-import editIcon from '../asset/edit.svg'
-import completedIcon from '../asset/tick.svg'
-import dotsIcon from '../asset/dots-three-vertical.svg'
+import { Todo, TodoActions } from '../../types/types'
+import TodoStatus from '../../TodoStatus'
 
-import TodoStatus from '../TodoStatus'
+import activeIcon from '../../asset/play.svg'
+import editIcon from '../../asset/edit.svg'
+import completedIcon from '../../asset/tick.svg'
+import dotsIcon from '../../asset/dots-three-vertical.svg'
 
-import TodoButton from './TodoButton'
-import SVGIcon from './SVGIcon'
-import TodoActionsList from './TodoActionsList'
-import TextInput from './TextInput'
+import TodoButton from '../TodoButton/TodoButton'
+import SVGIcon from '../SVGIcon/SVGIcon'
+import TodoActionsList from '../TodoActionsList/TodoActionsList'
 
-import { capitalizeFirstLetter } from '../util/capitalize'
-
-import {Todo, TodoActions} from '../types/types'
-
-const TodoButtonStatus = styled(TodoButton)`
-width: 120px;
-`;
-
-const TodoButtonActions = styled(TodoButton)`
-position: relative;
-
-width: 24px;
-height: 24px;
-
-display: flex;
-flex-direction: row;
-justify-content: center;
-
-border-radius: 4px;
-transition: background-color, 0.1s ease-in;
-cursor: pointer;
-
-&:hover {
-  background: #F6F6F6;
-}
-`;
-
-const TodoItemContent = styled.div`
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-`;
-
-const TodoItemLeading = styled.div`
-display: flex;
-flex-direction: row;
-align-items: center;
-`;
-
-const TodoItemTrailing = styled(TodoItemLeading)``;
-
-const TodoItem = styled.div`
-margin-bottom: 12px;
-border-radius: 6px;
-
-padding: 8px 16px;
-background: white;
-
-box-shadow: 0px 0px 4px 8px rgba(0,0,0,0.008);
-
-&:last-child {
-  margin-bottom: 0;
-}
-`;
-
-const TodoInputName = styled(TextInput)`
-width: 100px;
-`;
-
-const TodoInputText = styled(TextInput)`
-width: 200px;
-`;
-
+import {TodoItem, TodoButtonStatus, TodoButtonActions, TodoItemContent, TodoItemLeading, TodoItemTrailing, TodoInputName, TodoInputText } from './TodoListItem.styles'
 
 type TodoProps = {
   todo: Todo,
   actions: TodoActions
 }
 
-export default ({
+export default React.memo(({
   todo,
   actions
 }: TodoProps) => {
@@ -103,18 +39,18 @@ export default ({
   const actionsList = useRef(null);
   const hidden = useRef(true);
   
-  function toggleActionsList() {
+  function toggleActionsList () {
     setActionsHidden(!hidden.current);
     hidden.current = !hidden.current;
-  }
+  };
 
-  function handleActionsClick(e: React.MouseEvent<HTMLButtonElement>) {
+  const handleActionsClick = useCallback(function (e: React.MouseEvent<HTMLButtonElement>) {
     toggleActionsList();
-  }
+  }, []);
 
   function handleToggle(e: React.MouseEvent<HTMLButtonElement>) {
     actions.toggle(todo.id);
-  }
+  };
 
   function handleEdit(e: React.MouseEvent<HTMLButtonElement>) {
     actions.edit(todo.id, {
@@ -174,10 +110,10 @@ export default ({
           <TodoInputText label="Description" id={`todo-text-${todo.id}`} className="todo-text" defaultValue={todo.text} inputRef={editText} />
           <div style={{marginRight: "24px"}}/>
           <TodoButton type="button" className={classnames("todo-button", {hidden: !editing})} onClick={handleEdit} buttonRef={saveButton}>
-              <SVGIcon src={editIcon} />
-              <div style={{marginRight: "8px"}}/>
-              Save
-            </TodoButton>
+            <SVGIcon src={editIcon} />
+            <div style={{marginRight: "8px"}}/>
+            Save
+          </TodoButton>
         </TodoItemLeading>
         <TodoItemTrailing className="todo-item-trailing">
           <TodoButtonStatus type="button" onClick={handleToggle}>
@@ -193,4 +129,4 @@ export default ({
       </TodoItemContent>
     </TodoItem>
   );
-}
+})

@@ -1,24 +1,17 @@
 import React from 'react'
 
-import {Todo, TodoActions} from '../types/types'
+import {Todo, TodoActions} from '../../types/types'
 
-import TodoListItem from './TodoListItem'
+import TodoListItem from '../TodoListItem/TodoListItem'
 
-import styled from 'styled-components'
-
-const TodoList = styled.div`
-display: flex;
-flex-direction: column;
-
-margin-bottom: 24px;
-`;
+import {TodoList} from './TodoList.styles'
 
 type TodoListProps = {
   todos: Todo[],
   actions: TodoActions
 }
 
-export default ({todos, actions} : TodoListProps) => {
+export default React.memo(({todos, actions} : TodoListProps) => {
   const content = todos.length > 0 ? todos.map((todo, i) => <TodoListItem key={todo.id} todo={todo} actions={actions} />) : "No tasks" 
   
   return (
@@ -26,4 +19,4 @@ export default ({todos, actions} : TodoListProps) => {
       {content}
     </TodoList>
   );
-}
+})

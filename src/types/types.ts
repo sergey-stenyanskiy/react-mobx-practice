@@ -24,6 +24,7 @@ export type TodoListActions = {
   remove: () => void
 }
 
+
 export type ButtonPrimaryColors = {
   [index: string]: string
 
@@ -40,5 +41,22 @@ export type ButtonTextColors = {
   white: "white"
   black: "black"
 }
+
+
+export type ButtonTheme = {
+  background: keyof ButtonPrimaryColors
+  text: keyof ButtonTextColors
+}
+
+export type ButtonStyleVariants = "primary" | "danger"
+
+export type ButtonStyles = {
+  [index in ButtonStyleVariants]: ButtonTheme
+}
+
+export type AppTheme = {
+  button: ButtonStyles
+}
+
 
 export type HTMLButtonType = "button" | "submit" | "reset"

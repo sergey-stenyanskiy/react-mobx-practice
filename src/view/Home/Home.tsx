@@ -1,37 +1,20 @@
 import React, { useState } from 'react'
 
-import {Todo, AddTodoData, EditTodoData, TodoData} from '../types/types'
-import TodoStatus from '../TodoStatus'
+import { genId } from '../../util/idGenerator'
 
-import TodoList from '../component/TodoList'
-import AddTaskForm from '../component/AddTodoForm'
-import Divider from '../component/Divider'
-import RoundedButton from '../component/RoundedButton'
+import { Todo, AddTodoData, EditTodoData, TodoData } from '../../types/types'
+import TodoStatus from '../../TodoStatus'
 
-import styled from 'styled-components'
-import { genId } from '../util/idGenerator'
+import TodoList from '../../component/TodoList/TodoList'
+import AddTaskForm from '../../component/AddTodoForm/AddTodoForm'
+import Divider from '../../component/Divider/Divider'
+import RoundedButton from '../../component/RoundedButton/RoundedButton'
+
+import {Home, Actions} from './Home.styles'
 
 type HomeState = Todo[]
 
 const initialState: HomeState = []
-
-const Home = styled.main`
-display: flex;
-flex-direction: column;
-
-width: 920px;
-
-margin: auto;
-
-padding: 16px;
-background: #E4E7EB;
-`;
-
-const Actions = styled.div`
-display: flex;
-flex-direction: row;
-align-items: center;
-`;
 
 export default () => {
   const [todos, setTodos] = useState(initialState);
@@ -120,7 +103,7 @@ export default () => {
       <Actions>
         <RoundedButton onClick={completeAllTodos} label="All completed" />
         <div style={{marginRight: "24px"}} />
-        <RoundedButton onClick={removeCompleted} label="Remove Completed" primaryColor="red"/>
+        <RoundedButton onClick={removeCompleted} label="Remove Completed" buttonStyle="danger"/>
       </Actions>
     </Home>
   );

@@ -1,19 +1,8 @@
-import React, { ReactNode } from 'react'
+import React, {ReactNode} from 'react'
 
+import {HTMLButtonType} from '../../types/types';
 
-import { HTMLButtonType } from '../types/types';
-import styled from 'styled-components'
-
-const Button = styled.button`
-display: flex;
-flex-direction: row;
-align-items: center;
-border: none;
-outline: none;
-padding: 0;
-background: transparent;
-cursor: pointer;
-`;
+import {TodoButton} from './TodoButton.styles'
 
 type TodoButtonProps = {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
@@ -26,7 +15,7 @@ type TodoButtonProps = {
 }
 
 
-export default ({
+export default React.memo(({
   onClick,
   type,
   id,
@@ -36,7 +25,7 @@ export default ({
   buttonRef
 }: TodoButtonProps) => {
   return (
-    <Button
+    <TodoButton
       onClick={onClick} 
       type={type}
       id={id}
@@ -45,6 +34,6 @@ export default ({
       ref={buttonRef}
     >
       {children}
-    </Button>
+    </TodoButton>
   );
-}
+})
