@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { TodoVM } from '../../types/types'
+import { ViewModel } from '../../types/types'
 
 import TodoList from '../../component/TodoList/TodoList'
 import AddTaskForm from '../../component/AddTodoForm/AddTodoForm'
@@ -10,7 +10,7 @@ import RoundedButton from '../../component/RoundedButton/RoundedButton'
 import {Home, Actions} from './Home.styles'
 
 type HomeProps = {
-  vm: TodoVM
+  vm: ViewModel
 }
 
 export default ({

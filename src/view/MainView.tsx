@@ -1,10 +1,10 @@
 import React from 'react'
-import { TodoVM } from '../types/types';
+import { ViewModel } from '../types/types';
 
 import Home from './Home/Home'
 
 type MainViewProps = {
-  vm: TodoVM
+  vm: ViewModel
 }
 
 export default ({

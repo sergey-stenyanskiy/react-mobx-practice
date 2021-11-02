@@ -1,5 +1,3 @@
-import React from 'react'
-
 import TodoStatus from '../TodoStatus'
 
 export type Todo = {
@@ -15,7 +13,7 @@ export type AddTodoData = Pick<Todo, "name" | "text">
 
 export type EditTodoData = AddTodoData
 
-export type TodoVMActions = {
+export type ViewModelActions = {
   toggle: (id: number) => void
   remove: (id: number) => void
   edit: (id: number, data: EditTodoData) => void
@@ -24,12 +22,14 @@ export type TodoVMActions = {
   add: (todoData: AddTodoData) => void
 }
 
-export type TodoVM = {
-  todos: Todo[]
-  actions: TodoVMActions
+export type State = Todo[]
+
+export type ViewModel = {
+  todos: State
+  actions: ViewModelActions
 }
   
-export type TodoActions = Pick<TodoVMActions, "toggle" | "remove" | "edit">
+export type TodoActions = Pick<ViewModelActions, "toggle" | "remove" | "edit">
 
 export type TodoListActions = {
   edit: () => void

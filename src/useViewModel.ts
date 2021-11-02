@@ -2,14 +2,10 @@ import React, {useState} from 'react'
 
 import {genId} from './util/idGenerator'
 
-import {Todo, TodoData, AddTodoData, EditTodoData, TodoVM} from './types/types' 
+import {Todo, TodoData, AddTodoData, EditTodoData, ViewModel, State} from './types/types' 
 import TodoStatus from './TodoStatus'
 
-type State = Todo[]
-
-const initialState: State = []
-
-export function useVM(): TodoVM {
+export function useViewModel(initialState: State): ViewModel {
   const [todos, setTodos] = useState(initialState);
   
   function filterTodos(predicate: (todo: Todo) => boolean) {

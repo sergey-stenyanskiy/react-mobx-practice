@@ -2,12 +2,16 @@ import React from 'react'
 
 import MainView from './view/MainView'
 
+import { State } from './types/types'
+
 import theme from './AppTheme'
 import { ThemeProvider } from 'styled-components'
-import { useVM } from './useVM'
+import { useViewModel } from './useViewModel'
+
+const initialState: State = [];
 
 export default () => {
-  const vm = useVM();
+  const vm = useViewModel(initialState);
 
   return (
     <ThemeProvider theme={theme}>
