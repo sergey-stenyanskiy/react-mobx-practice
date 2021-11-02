@@ -16,7 +16,7 @@ import TodoButton from '../TodoButton/TodoButton'
 import SVGIcon from '../SVGIcon/SVGIcon'
 import TodoActionsList from '../TodoActionsList/TodoActionsList'
 
-import {TodoItem, TodoButtonStatus, TodoButtonActions, TodoItemContent, TodoItemLeading, TodoItemTrailing, TodoInputName, TodoInputText } from './TodoListItem.styles'
+import { TodoItem, TodoButtonStatus, TodoButtonActions, TodoItemContent, TodoItemLeading, TodoItemTrailing, TodoInputName, TodoInputText } from './TodoListItem.styles'
 
 type TodoProps = {
   todo: Todo,
@@ -35,24 +35,22 @@ export default React.memo(({
 
   const actionsButton = useRef<HTMLButtonElement>(null);
   const saveButton = useRef<HTMLButtonElement>(null);
-  
+
   const actionsList = useRef(null);
   const hidden = useRef(true);
-  
-  function toggleActionsList () {
+
+  function toggleActionsList() {
     setActionsHidden(!hidden.current);
     hidden.current = !hidden.current;
-  };
+  }
 
-  const handleActionsClick = useCallback(function () {
-    toggleActionsList();
-  }, []);
+  const handleActionsClick = useCallback(() => toggleActionsList(), []);
 
-  function handleToggle() {
+  const handleToggle = () => {
     actions.toggle(todo.id);
-  };
+  }
 
-  function handleEdit() {
+  const handleEdit = () => {
     actions.edit(todo.id, {
       name: editName.current!.value,
       text: editText.current!.value,
@@ -75,55 +73,57 @@ export default React.memo(({
   }
 
   function checkFocus() {
-    if (document.activeElement === editName.current 
+    if (document.activeElement === editName.current
       || document.activeElement === editText.current) {
-        setEditing(true);
-      } else {
-        if (document.activeElement !== saveButton.current) {
-          setEditing(false);
-        }
-      }
+      setEditing(true);
+    } else if (document.activeElement !== saveButton.current) {
+      setEditing(false);
+    }
   }
 
-  useEffect(() => {
-    document.addEventListener("focus", checkFocus, true);
-    document.addEventListener("mousedown", handleClickOutside);
-    
-    return () => {
-      document.removeEventListener("focus", checkFocus, true);
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-  }, []);
-
-  function handleClickOutside(e: MouseEvent) {
+  const handleClickOutside = useCallback((e: MouseEvent) => {
     if (!hidden.current && e.target !== actionsList.current && e.target !== actionsButton.current) {
       toggleActionsList();
     }
-  }
+  }, [])
+
+  useEffect(() => {
+    document.addEventListener('focus', checkFocus, true);
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('focus', checkFocus, true);
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [handleClickOutside]);
 
   return (
     <TodoItem className="todo-item">
       <TodoItemContent className="todo-item-content">
         <TodoItemLeading className="todo-item-leading">
           <TodoInputName label="Task" id={`todo-name-${todo.id}`} className="todo-name" defaultValue={todo.name} inputRef={editName} />
-          <div style={{marginRight: "24px"}}/>
+          <div style={{ marginRight: '24px' }} />
           <TodoInputText label="Description" id={`todo-text-${todo.id}`} className="todo-text" defaultValue={todo.text} inputRef={editText} />
-          <div style={{marginRight: "24px"}}/>
-          <TodoButton type="button" className={classnames("todo-button", {hidden: !editing})} onClick={handleEdit} buttonRef={saveButton}>
+          <div style={{ marginRight: '24px' }} />
+          <TodoButton type="button" className={classnames('todo-button', { hidden: !editing })} onClick={handleEdit} buttonRef={saveButton}>
             <SVGIcon src={editIcon} />
-            <div style={{marginRight: "8px"}}/>
+            <div style={{ marginRight: '8px' }} />
             Save
           </TodoButton>
         </TodoItemLeading>
         <TodoItemTrailing className="todo-item-trailing">
           <TodoButtonStatus type="button" onClick={handleToggle}>
             <SVGIcon src={todo.status === TodoStatus.ACTIVE ? activeIcon : completedIcon} />
-            <div style={{marginRight: "8px"}}/>
+            <div style={{ marginRight: '8px' }} />
             {capitalizeFirstLetter(todo.status)}
           </TodoButtonStatus>
           <TodoButtonActions type="button" onClick={handleActionsClick} buttonRef={actionsButton}>
             <SVGIcon src={dotsIcon} />
-            <TodoActionsList actions={listActions} hidden={actionsHidden} actionsListRef={actionsList}/>
+            <TodoActionsList
+              actions={listActions}
+              hidden={actionsHidden}
+              actionsListRef={actionsList}
+            />
           </TodoButtonActions>
         </TodoItemTrailing>
       </TodoItemContent>

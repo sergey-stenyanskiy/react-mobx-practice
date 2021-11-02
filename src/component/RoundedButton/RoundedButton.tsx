@@ -1,8 +1,8 @@
 import React from 'react'
 
-import {ButtonStyleVariants} from '../../types/types'
+import { ButtonStyleVariants } from '../../types/types'
 
-import {StyledButtonVariant} from './RoundedButton.styles'
+import { StyledButtonVariant } from './RoundedButton.styles'
 
 type RoundedButtonProps = {
   onClick?: (e: React.MouseEvent) => any
@@ -19,17 +19,15 @@ export default React.memo(({
   name,
   label,
   className,
-  buttonStyle = "primary" as const
-}: RoundedButtonProps) => {
-  return (
-    <StyledButtonVariant 
-      type="button" 
-      onClick={onClick} 
-      id={id} 
-      name={name}
-      buttonStyle={buttonStyle}
-      >
-        {label}
-    </StyledButtonVariant>
-  );
-})
+  buttonStyle = 'primary' as const
+}: RoundedButtonProps) => (
+  <StyledButtonVariant
+    type="button"
+    onClick={onClick}
+    id={id}
+    name={name}
+    buttonStyle={buttonStyle}
+  >
+    {label}
+  </StyledButtonVariant>
+))

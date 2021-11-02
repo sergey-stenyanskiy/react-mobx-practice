@@ -1,8 +1,8 @@
-import React, {ReactNode} from 'react'
+import React, { ReactNode } from 'react'
 
-import {HTMLButtonType} from '../../types/types';
+import { HTMLButtonType } from '../../types/types';
 
-import {TodoButton} from './TodoButton.styles'
+import { TodoButton } from './TodoButton.styles'
 
 type TodoButtonProps = {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
@@ -14,7 +14,6 @@ type TodoButtonProps = {
   buttonRef?: React.RefObject<HTMLButtonElement>
 }
 
-
 export default React.memo(({
   onClick,
   type,
@@ -23,17 +22,15 @@ export default React.memo(({
   className,
   children,
   buttonRef
-}: TodoButtonProps) => {
-  return (
-    <TodoButton
-      onClick={onClick} 
-      type={type}
-      id={id}
-      name={name}
-      className={className}
-      ref={buttonRef}
-    >
-      {children}
-    </TodoButton>
-  );
-})
+}: TodoButtonProps) => (
+  <TodoButton
+    onClick={onClick}
+    type={type}
+    id={id}
+    name={name}
+    className={className}
+    ref={buttonRef}
+  >
+    {children}
+  </TodoButton>
+))

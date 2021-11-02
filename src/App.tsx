@@ -16,7 +16,7 @@ export default () => {
 
   return (
     <ThemeProvider theme={theme}>
-        <MainView vm={vm} />
+      <MainView vm={vm} />
     </ThemeProvider>
   );
 }

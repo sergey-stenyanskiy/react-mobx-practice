@@ -9,7 +9,7 @@ export type Todo = {
 
 export type TodoData = Partial<Todo>
 
-export type AddTodoData = Pick<Todo, "name" | "text">
+export type AddTodoData = Pick<Todo, 'name' | 'text'>
 
 export type EditTodoData = AddTodoData
 
@@ -28,8 +28,8 @@ export type ViewModel = {
   todos: State
   actions: ViewModelActions
 }
-  
-export type TodoActions = Pick<ViewModelActions, "toggle" | "remove" | "edit">
+
+export type TodoActions = Pick<ViewModelActions, 'toggle' | 'remove' | 'edit'>
 
 export type TodoListActions = {
   edit: () => void
@@ -39,27 +39,26 @@ export type TodoListActions = {
 export type ButtonPrimaryColors = {
   [index: string]: string
 
-  red: "#EB5757"
-  green: "#27AE60"
-  blue: "#3C4FF4"
-  white: "white"
-  transparent: "transparent"
+  red: '#EB5757'
+  green: '#27AE60'
+  blue: '#3C4FF4'
+  white: 'white'
+  transparent: 'transparent'
 }
 
 export type ButtonTextColors = {
   [index: string]: string
 
-  white: "white"
-  black: "black"
+  white: 'white'
+  black: 'black'
 }
-
 
 export type ButtonTheme = {
   background: keyof ButtonPrimaryColors
   text: keyof ButtonTextColors
 }
 
-export type ButtonStyleVariants = "primary" | "danger"
+export type ButtonStyleVariants = 'primary' | 'danger'
 
 export type ButtonStyles = {
   [index in ButtonStyleVariants]: ButtonTheme
@@ -69,5 +68,4 @@ export type AppTheme = {
   button: ButtonStyles
 }
 
-
-export type HTMLButtonType = "button" | "submit" | "reset"
+export type HTMLButtonType = 'button' | 'submit' | 'reset'

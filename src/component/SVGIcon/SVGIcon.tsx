@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {SVGIcon} from './SVGIcon.styles'
+import { SVGIcon } from './SVGIcon.styles'
 
 type SVGIconProps = {
   src: string
@@ -10,8 +10,6 @@ type SVGIconProps = {
 export default React.memo(({
   src,
   className
-}: SVGIconProps) => {
-  return (
-    <SVGIcon src={src} className={className}/>
-  );
-})
+}: SVGIconProps) => (
+  <SVGIcon src={src} className={className} />
+))

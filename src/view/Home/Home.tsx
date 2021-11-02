@@ -7,7 +7,7 @@ import AddTaskForm from '../../component/AddTodoForm/AddTodoForm'
 import Divider from '../../component/Divider/Divider'
 import RoundedButton from '../../component/RoundedButton/RoundedButton'
 
-import {Home, Actions} from './Home.styles'
+import { Home, Actions } from './Home.styles'
 
 type HomeProps = {
   vm: ViewModel
@@ -16,7 +16,7 @@ type HomeProps = {
 export default ({
   vm
 }: HomeProps) => {
-  const {todos, actions} = vm;
+  const { todos, actions } = vm;
 
   const todoActions = {
     toggle: actions.toggle,
@@ -26,13 +26,13 @@ export default ({
 
   return (
     <Home>
-      <TodoList todos={todos} actions={todoActions}  />
+      <TodoList todos={todos} actions={todoActions} />
       <Divider />
-      <AddTaskForm handleAddTodo={actions.add}/>
+      <AddTaskForm handleAddTodo={actions.add} />
       <Actions>
         <RoundedButton onClick={actions.completeAll} label="All completed" />
-        <div style={{marginRight: "24px"}} />
-        <RoundedButton onClick={actions.removeCompleted} label="Remove Completed" buttonStyle="danger"/>
+        <div style={{ marginRight: '24px' }} />
+        <RoundedButton onClick={actions.removeCompleted} label="Remove Completed" buttonStyle="danger" />
       </Actions>
     </Home>
   );

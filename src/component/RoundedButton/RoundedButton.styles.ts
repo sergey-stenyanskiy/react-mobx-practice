@@ -1,12 +1,11 @@
 import styled from 'styled-components'
 
-import {ButtonStyleVariants, AppTheme} from '../../types/types'
+import { ButtonStyleVariants, AppTheme } from '../../types/types'
 
 type RoundedButtonStylingProps = {
   theme: AppTheme,
   buttonStyle: ButtonStyleVariants
 }
-
 
 export const StyledButton = styled.button`
 cursor: pointer;
@@ -19,8 +18,7 @@ padding: 12px 20px;
 border-radius: 20px;
 `;
 
-
 export const StyledButtonVariant = styled(StyledButton)`
-background: ${({theme, buttonStyle}: RoundedButtonStylingProps) => theme.button[buttonStyle].background};
-color: ${({theme, buttonStyle}: RoundedButtonStylingProps) => theme.button[buttonStyle].text};
+background: ${({ theme, buttonStyle }: RoundedButtonStylingProps) => theme.button[buttonStyle].background};
+color: ${({ theme, buttonStyle }: RoundedButtonStylingProps) => theme.button[buttonStyle].text};
 `;

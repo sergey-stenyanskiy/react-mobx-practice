@@ -2,14 +2,14 @@ import React from 'react'
 
 import classnames from 'classnames'
 
-import {TodoListActions} from '../../types/types'
+import { TodoListActions } from '../../types/types'
 
 import editIcon from '../../asset/edit.svg'
 import removeIcon from '../../asset/recycle-bin-filled.svg'
 
 import SVGIcon from '../SVGIcon/SVGIcon'
 
-import {TodoActionsList, TodoActionListAction, TodoListActionRemove} from './TodoActionsList.styles'
+import { TodoActionsList, TodoActionListAction, TodoListActionRemove } from './TodoActionsList.styles'
 
 type TodoActionsListProps = {
   actions: TodoListActions
@@ -17,16 +17,16 @@ type TodoActionsListProps = {
   actionsListRef: React.RefObject<HTMLDivElement>
 }
 
-export default React.memo(({actions, hidden, actionsListRef} : TodoActionsListProps) => {
-  const actionsClass = classnames({"todo-actions-list-hidden": hidden});
+export default React.memo(({ actions, hidden, actionsListRef } : TodoActionsListProps) => {
+  const actionsClass = classnames({ 'todo-actions-list-hidden': hidden });
 
-  function handleRemove(e: React.MouseEvent<HTMLElement>) {
+  const handleRemove = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
-    
+
     actions.remove();
   }
 
-  function handleEdit(e: React.MouseEvent<HTMLElement>) {
+  const handleEdit = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
 
     actions.edit();
@@ -37,15 +37,15 @@ export default React.memo(({actions, hidden, actionsListRef} : TodoActionsListPr
       <ul>
         <li onClick={handleEdit}>
           <TodoActionListAction>
-            <SVGIcon src={editIcon}/>
-            <div style={{marginRight: "8px"}}/>
+            <SVGIcon src={editIcon} />
+            <div style={{ marginRight: '8px' }} />
             Edit
           </TodoActionListAction>
         </li>
         <li onClick={handleRemove}>
           <TodoListActionRemove>
-            <SVGIcon src={removeIcon}/>
-            <div style={{marginRight: "8px"}}/>
+            <SVGIcon src={removeIcon} />
+            <div style={{ marginRight: '8px' }} />
             Remove
           </TodoListActionRemove>
         </li>

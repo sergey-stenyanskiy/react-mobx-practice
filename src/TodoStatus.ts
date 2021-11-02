@@ -1,6 +1,6 @@
 enum TodoStatus {
-  ACTIVE = "active",
-  COMPLETED = "completed",
+  ACTIVE = 'active',
+  COMPLETED = 'completed',
 }
 
 export default TodoStatus

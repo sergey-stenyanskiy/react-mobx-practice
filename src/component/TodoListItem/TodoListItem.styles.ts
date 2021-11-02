@@ -1,7 +1,7 @@
 import React from 'react'
 
-import TodoButton from "../TodoButton/TodoButton";
-import TextInput from "../TextInput/TextInput";
+import TodoButton from '../TodoButton/TodoButton'
+import TextInput from '../TextInput/TextInput'
 
 import styled from 'styled-components'
 

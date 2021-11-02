@@ -1,9 +1,7 @@
 import React from 'react'
 
-import {Divider} from './Divider.styles'
+import { Divider } from './Divider.styles'
 
-export default () => {
-  return (
-    <Divider />
-  );
-}
+export default () => (
+  <Divider />
+)

@@ -1,5 +1,4 @@
-
-import {ReactSVG} from 'react-svg'
+import { ReactSVG } from 'react-svg'
 
 import styled from 'styled-components'
 

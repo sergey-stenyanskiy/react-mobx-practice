@@ -2,15 +2,15 @@ import React from 'react'
 
 import classnames from 'classnames'
 
-import {TextInput, TextInputInput, TextInputLabel} from './TextInput.styles'
+import { TextInput, TextInputInput, TextInputLabel } from './TextInput.styles'
 
 type TextInputProps = {
   value?: string
   defaultValue?: string
   inputRef?: React.RefObject<HTMLInputElement>
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => any
-  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => any
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => any
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
   label: string
   name?: string
   id?: string
@@ -30,22 +30,23 @@ export default React.memo(({
   id,
   className
 }: TextInputProps) => {
-  const inputClass = classnames(className, "text-input");
-  
+  const inputClass = classnames(className, 'text-input');
+
   return (
     <TextInput className={inputClass}>
-      <TextInputInput 
-        type="text" 
-        name={name} 
-        className="text-input-input" 
-        id={id} 
-        defaultValue={defaultValue} 
-        value={value} 
-        ref={inputRef} 
-        onChange={onChange} 
-        onFocus={onFocus} 
-        onBlur={onBlur} 
-        placeholder={"label"}/>
+      <TextInputInput
+        type="text"
+        name={name}
+        className="text-input-input"
+        id={id}
+        defaultValue={defaultValue}
+        value={value}
+        ref={inputRef}
+        onChange={onChange}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        placeholder="label"
+      />
       <TextInputLabel className="text-input-label" htmlFor={id}>{label}</TextInputLabel>
     </TextInput>
   );

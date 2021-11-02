@@ -1,14 +1,14 @@
-import {AppTheme} from './types/types'
+import { AppTheme } from './types/types'
 
 const theme: AppTheme = {
   button: {
     primary: {
-      background: "#3C4FF4",
-      text: "white" 
+      background: '#3C4FF4',
+      text: 'white'
     },
     danger: {
-      background: "#EB5757",
-      text: "white" 
+      background: '#EB5757',
+      text: 'white'
     },
   }
 }

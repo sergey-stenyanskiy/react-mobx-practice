@@ -9,6 +9,4 @@ type MainViewProps = {
 
 export default ({
   vm
-}: MainViewProps) => {
-  return <Home vm={vm} />;
-}
+}: MainViewProps) => <Home vm={vm} />

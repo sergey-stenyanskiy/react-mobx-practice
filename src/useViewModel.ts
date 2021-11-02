@@ -1,13 +1,13 @@
-import {useState} from 'react'
+import { useState } from 'react'
 
-import {genId} from './util/idGenerator'
+import { genId } from './util/idGenerator'
 
-import {Todo, TodoData, AddTodoData, EditTodoData, ViewModel, State} from './types/types' 
+import { Todo, TodoData, AddTodoData, EditTodoData, ViewModel, State } from './types/types'
 import TodoStatus from './TodoStatus'
 
 export function useViewModel(initialState: State): ViewModel {
   const [todos, setTodos] = useState(initialState);
-  
+
   function filterTodos(predicate: (todo: Todo) => boolean) {
     setTodos(todos.filter(predicate));
   }
@@ -26,34 +26,34 @@ export function useViewModel(initialState: State): ViewModel {
     setTodos([...todos, newTodo]);
   }
 
-  function editTodo(id: number, data: EditTodoData) {
-    setTodo(id, data);
-  }
-
-  function removeTodo(id: number) {
-    filterTodos(todo => todo.id !== id);
-  }
-
-  function getTodo(id: number) {
-    return todos.find(todo => todo.id === id);
-  }
-
   function setTodo(id: number, data: TodoData) {
-    mapTodos(todo => {
+    mapTodos((todo) => {
       if (todo.id === id) {
-        return {...todo, ...data};
+        return { ...todo, ...data };
       }
 
       return todo
     });
   }
 
+  function editTodo(id: number, data: EditTodoData) {
+    setTodo(id, data);
+  }
+
+  function removeTodo(id: number) {
+    filterTodos((todo) => todo.id !== id);
+  }
+
+  function getTodo(id: number) {
+    return todos.find((todo) => todo.id === id);
+  }
+
   function toggleTodo(id: number) {
-    mapTodos(todo => {
+    mapTodos((todo) => {
       if (todo.id !== id) {
         return todo;
       }
-        
+
       const status = todo.status === TodoStatus.ACTIVE ? TodoStatus.COMPLETED : TodoStatus.ACTIVE;
 
       return {
@@ -70,11 +70,11 @@ export function useViewModel(initialState: State): ViewModel {
   }
 
   function completeAllTodos() {
-    mapTodos(todo => ({...todo, status: TodoStatus.COMPLETED}));
+    mapTodos((todo) => ({ ...todo, status: TodoStatus.COMPLETED }));
   }
 
   function removeCompleted() {
-    filterTodos(todo => todo.status !== TodoStatus.COMPLETED);
+    filterTodos((todo) => todo.status !== TodoStatus.COMPLETED);
   }
 
   return {
@@ -85,7 +85,7 @@ export function useViewModel(initialState: State): ViewModel {
       remove: removeTodo,
       toggle: toggleTodo,
       completeAll: completeAllTodos,
-      removeCompleted: removeCompleted
+      removeCompleted
     }
   }
 }
