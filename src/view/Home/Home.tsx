@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ViewModel } from '../../types/types'
+import { State } from '../../types/types'
 
 import TodoList from '../../component/TodoList/TodoList'
 import AddTaskForm from '../../component/AddTodoForm/AddTodoForm'
@@ -8,15 +8,12 @@ import Divider from '../../component/Divider/Divider'
 import RoundedButton from '../../component/RoundedButton/RoundedButton'
 
 import { Home, Actions } from './Home.styles'
+import { useViewModel } from '../../useViewModel'
 
-type HomeProps = {
-  vm: ViewModel
-}
+const initialState: State = [];
 
-export default ({
-  vm
-}: HomeProps) => {
-  const { todos, actions } = vm;
+export default () => {
+  const { todos, actions } = useViewModel(initialState);
 
   const todoActions = {
     toggle: actions.toggle,
