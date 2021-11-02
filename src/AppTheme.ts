@@ -1,4 +1,4 @@
-import { AppTheme } from './types/types'
+import { AppTheme } from './types/styles.types'
 
 const theme: AppTheme = {
   button: {

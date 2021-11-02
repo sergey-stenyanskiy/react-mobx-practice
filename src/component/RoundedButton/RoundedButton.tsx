@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ButtonStyleVariants } from '../../types/types'
+import { ButtonStyleVariants } from '../../types/styles.types'
 
 import { StyledButtonVariant } from './RoundedButton.styles'
 

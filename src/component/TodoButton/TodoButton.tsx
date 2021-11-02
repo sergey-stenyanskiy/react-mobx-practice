@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 
-import { HTMLButtonType } from '../../types/types';
+import { HTMLButtonType } from '../../types/styles.types';
 
 import { TodoButton } from './TodoButton.styles'
 

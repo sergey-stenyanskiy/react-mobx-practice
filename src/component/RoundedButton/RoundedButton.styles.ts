@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { ButtonStyleVariants, AppTheme } from '../../types/types'
+import { ButtonStyleVariants, AppTheme } from '../../types/styles.types'
 
 type RoundedButtonStylingProps = {
   theme: AppTheme,
