@@ -5,7 +5,7 @@ function idGenerator() {
     next() {
       return ++id;
     }
-  }
+  };
 }
 
 export const genId = idGenerator();

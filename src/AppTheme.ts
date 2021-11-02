@@ -11,6 +11,6 @@ const theme: AppTheme = {
       text: 'white'
     },
   }
-}
+};
 
 export default theme

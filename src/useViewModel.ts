@@ -21,7 +21,7 @@ export function useViewModel(initialState: State): ViewModel {
       id: genId.next(),
       status: TodoStatus.ACTIVE,
       ...data
-    }
+    };
 
     setTodos([...todos, newTodo]);
   }
@@ -32,7 +32,7 @@ export function useViewModel(initialState: State): ViewModel {
         return { ...todo, ...data };
       }
 
-      return todo
+      return todo;
     });
   }
 
@@ -59,7 +59,7 @@ export function useViewModel(initialState: State): ViewModel {
       return {
         ...todo,
         status
-      }
+      };
     });
   }
 

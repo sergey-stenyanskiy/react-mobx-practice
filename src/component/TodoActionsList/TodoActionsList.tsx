@@ -24,13 +24,13 @@ export default React.memo(({ actions, hidden, actionsListRef } : TodoActionsList
     e.stopPropagation();
 
     actions.remove();
-  }
+  };
 
   const handleEdit = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
 
     actions.edit();
-  }
+  };
 
   return (
     <TodoActionsList className={actionsClass} ref={actionsListRef}>

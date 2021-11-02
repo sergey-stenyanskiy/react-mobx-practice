@@ -48,7 +48,7 @@ export default React.memo(({
 
   const handleToggle = () => {
     actions.toggle(todo.id);
-  }
+  };
 
   const handleEdit = () => {
     actions.edit(todo.id, {
@@ -57,7 +57,7 @@ export default React.memo(({
     });
 
     setEditing(false);
-  }
+  };
 
   function listActionRemove() {
     actions.remove(todo.id);
@@ -85,7 +85,7 @@ export default React.memo(({
     if (!hidden.current && e.target !== actionsList.current && e.target !== actionsButton.current) {
       toggleActionsList();
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     document.addEventListener('focus', checkFocus, true);
@@ -94,7 +94,7 @@ export default React.memo(({
     return () => {
       document.removeEventListener('focus', checkFocus, true);
       document.removeEventListener('mousedown', handleClickOutside);
-    }
+    };
   }, [handleClickOutside]);
 
   return (
