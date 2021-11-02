@@ -12,7 +12,7 @@ type TodoListProps = {
 }
 
 export default React.memo(({todos, actions} : TodoListProps) => {
-  const content = todos.length > 0 ? todos.map((todo, i) => <TodoListItem key={todo.id} todo={todo} actions={actions} />) : "No tasks" 
+  const content = todos.length > 0 ? todos.map(todo => <TodoListItem key={todo.id} todo={todo} actions={actions} />) : "No tasks" 
   
   return (
     <TodoList className="todo-list">

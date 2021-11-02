@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 
 import {genId} from './util/idGenerator'
 
@@ -50,16 +50,16 @@ export function useViewModel(initialState: State): ViewModel {
 
   function toggleTodo(id: number) {
     mapTodos(todo => {
-      if (todo.id === id) {
-        const status = todo.status === TodoStatus.ACTIVE ? TodoStatus.COMPLETED : TodoStatus.ACTIVE;
-
-        return {
-          ...todo,
-          status
-        }
+      if (todo.id !== id) {
+        return todo;
       }
+        
+      const status = todo.status === TodoStatus.ACTIVE ? TodoStatus.COMPLETED : TodoStatus.ACTIVE;
 
-      return todo;
+      return {
+        ...todo,
+        status
+      }
     });
   }
 

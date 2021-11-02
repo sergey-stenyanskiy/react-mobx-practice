@@ -1,12 +1,13 @@
 import React from 'react'
 
-import MainView from './view/MainView'
-
 import { State } from './types/types'
 
-import theme from './AppTheme'
 import { ThemeProvider } from 'styled-components'
+
 import { useViewModel } from './useViewModel'
+
+import theme from './AppTheme'
+import MainView from './view/MainView'
 
 const initialState: State = [];
 

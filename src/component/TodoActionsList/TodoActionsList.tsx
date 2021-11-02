@@ -21,15 +21,15 @@ export default React.memo(({actions, hidden, actionsListRef} : TodoActionsListPr
   const actionsClass = classnames({"todo-actions-list-hidden": hidden});
 
   function handleRemove(e: React.MouseEvent<HTMLElement>) {
-    actions.remove();
-
     e.stopPropagation();
+    
+    actions.remove();
   }
 
   function handleEdit(e: React.MouseEvent<HTMLElement>) {
-    actions.edit();
-
     e.stopPropagation();
+
+    actions.edit();
   }
 
   return (

@@ -44,15 +44,15 @@ export default React.memo(({
     hidden.current = !hidden.current;
   };
 
-  const handleActionsClick = useCallback(function (e: React.MouseEvent<HTMLButtonElement>) {
+  const handleActionsClick = useCallback(function () {
     toggleActionsList();
   }, []);
 
-  function handleToggle(e: React.MouseEvent<HTMLButtonElement>) {
+  function handleToggle() {
     actions.toggle(todo.id);
   };
 
-  function handleEdit(e: React.MouseEvent<HTMLButtonElement>) {
+  function handleEdit() {
     actions.edit(todo.id, {
       name: editName.current!.value,
       text: editText.current!.value,
@@ -74,7 +74,7 @@ export default React.memo(({
     edit: listActionEdit,
   }
 
-  function checkFocus(e: FocusEvent) {
+  function checkFocus() {
     if (document.activeElement === editName.current 
       || document.activeElement === editText.current) {
         setEditing(true);
