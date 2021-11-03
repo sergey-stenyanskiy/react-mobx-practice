@@ -1,8 +1,6 @@
-import React from 'react'
-
 import styled from 'styled-components'
 
-export const TodoButton = React.memo(styled.button`
+export const TodoButton = styled.button`
 display: flex;
 flex-direction: row;
 align-items: center;
@@ -11,4 +9,4 @@ outline: none;
 padding: 0;
 background: transparent;
 cursor: pointer;
-`);
+`;

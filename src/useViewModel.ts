@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState, useMemo } from 'react'
 
 import { genId } from './util/idGenerator'
 
@@ -8,15 +8,15 @@ import TodoStatus from './TodoStatus'
 export function useViewModel(initialState: State): ViewModel {
   const [todos, setTodos] = useState(initialState);
 
-  function filterTodos(predicate: (todo: Todo) => boolean) {
+  const filterTodos = useCallback((predicate: (todo: Todo) => boolean) => {
     setTodos(todos.filter(predicate));
-  }
+  }, [todos]);
 
-  function mapTodos(mapfun: (todo: Todo, index: number) => Todo) {
+  const mapTodos = useCallback((mapfun: (todo: Todo, index: number) => Todo) => {
     setTodos(todos.map(mapfun));
-  }
+  }, [todos]);
 
-  function addTodo(data: AddTodoData) {
+  const addTodo = useCallback((data: AddTodoData) => {
     const newTodo: Todo = {
       id: genId.next(),
       status: TodoStatus.ACTIVE,
@@ -24,9 +24,9 @@ export function useViewModel(initialState: State): ViewModel {
     };
 
     setTodos([...todos, newTodo]);
-  }
+  }, [todos]);
 
-  function setTodo(id: number, data: TodoData) {
+  const setTodo = useCallback((id: number, data: TodoData) => {
     mapTodos((todo) => {
       if (todo.id === id) {
         return { ...todo, ...data };
@@ -34,21 +34,19 @@ export function useViewModel(initialState: State): ViewModel {
 
       return todo;
     });
-  }
+  }, [mapTodos]);
 
-  function editTodo(id: number, data: EditTodoData) {
+  const editTodo = useCallback((id: number, data: EditTodoData) => {
     setTodo(id, data);
-  }
+  }, [setTodo]);
 
-  function removeTodo(id: number) {
+  const removeTodo = useCallback((id: number) => {
     filterTodos((todo) => todo.id !== id);
-  }
+  }, [filterTodos]);
 
-  function getTodo(id: number) {
-    return todos.find((todo) => todo.id === id);
-  }
+  const getTodo = useCallback((id: number) => todos.find((todo) => todo.id === id), [todos]);
 
-  function toggleTodo(id: number) {
+  const toggleTodo = useCallback((id: number) => {
     mapTodos((todo) => {
       if (todo.id !== id) {
         return todo;
@@ -61,31 +59,33 @@ export function useViewModel(initialState: State): ViewModel {
         status
       };
     });
-  }
+  }, [mapTodos]);
 
-  function completeTodo(id: number) {
+  const completeTodo = useCallback((id: number) => {
     setTodo(id, {
       status: TodoStatus.COMPLETED
     });
-  }
+  }, [setTodo]);
 
-  function completeAllTodos() {
+  const completeAllTodos = useCallback(() => {
     mapTodos((todo) => ({ ...todo, status: TodoStatus.COMPLETED }));
-  }
+  }, [mapTodos]);
 
-  function removeCompleted() {
+  const removeCompleted = useCallback(() => {
     filterTodos((todo) => todo.status !== TodoStatus.COMPLETED);
-  }
+  }, [filterTodos]);
+
+  const actions = useMemo(() => ({
+    add: addTodo,
+    edit: editTodo,
+    remove: removeTodo,
+    toggle: toggleTodo,
+    completeAll: completeAllTodos,
+    removeCompleted
+  }), [addTodo, editTodo, removeTodo, toggleTodo, completeAllTodos, removeCompleted])
 
   return {
     todos,
-    actions: {
-      add: addTodo,
-      edit: editTodo,
-      remove: removeTodo,
-      toggle: toggleTodo,
-      completeAll: completeAllTodos,
-      removeCompleted
-    }
+    actions
   }
 }

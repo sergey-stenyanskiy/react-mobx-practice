@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export const FormGroup = React.memo(styled.div`
+export const FormGroup = styled.div`
 display: flex;
 flex-direction: row;
 align-items: center;
@@ -11,9 +11,9 @@ margin-bottom: 16px;
 padding: 8px 16px;
 background: white;
 border-radius: 6px;
-`);
+`;
 
-export const AddTodoForm = React.memo(styled.form`
+export const AddTodoForm = styled.form`
 & h4 {
   font-weight: normal;
   margin: 16px 0;
@@ -26,4 +26,4 @@ export const AddTodoForm = React.memo(styled.form`
 & #add-todo-todo-text {
   width: 200px;
 }
-`);
+`;

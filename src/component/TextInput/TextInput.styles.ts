@@ -14,7 +14,7 @@ transition: 0.15s ease-in;
 color: #bababa;
 `);
 
-export const TextInputInput = React.memo(styled.input`
+export const TextInputInput = styled.input`
 font-size: inherit;
 
 border: none;
@@ -52,9 +52,9 @@ display: block;
 
   color: blue;
 }
-`);
+`;
 
-export const TextInput = React.memo(styled.div`
+export const TextInput = styled.div`
 position: relative;
 
 font-size: 16px;
@@ -62,4 +62,4 @@ padding-top: 12px;
 transition: 0.15s ease-in;
 
 background: white;
-`);
+`;

@@ -5,11 +5,11 @@ import TextInput from '../TextInput/TextInput'
 
 import styled from 'styled-components'
 
-export const TodoButtonStatus = styled(TodoButton)`
+export const TodoButtonStatus = React.memo(styled(TodoButton)`
 width: 120px;
-`;
+`);
 
-export const TodoButtonActions = styled(TodoButton)`
+export const TodoButtonActions = React.memo(styled(TodoButton)`
 position: relative;
 
 width: 24px;
@@ -26,7 +26,7 @@ cursor: pointer;
 &:hover {
   background: #F6F6F6;
 }
-`;
+`);
 
 export const TodoItemContent = styled.div`
 display: flex;
@@ -34,17 +34,17 @@ flex-direction: row;
 justify-content: space-between;
 `;
 
-export const TodoItemLeading = styled.div`
+export const TodoItemLeading = React.memo(styled.div`
 display: flex;
 flex-direction: row;
 align-items: center;
-`;
+`);
 
-export const TodoItemTrailing = styled.div`
+export const TodoItemTrailing = React.memo(styled.div`
 display: flex;
 flex-direction: row;
 align-items: center;
-`;
+`);
 
 export const TodoItem = styled.div`
 margin-bottom: 12px;

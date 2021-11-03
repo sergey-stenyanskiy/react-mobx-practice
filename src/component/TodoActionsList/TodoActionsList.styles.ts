@@ -2,7 +2,7 @@ import React from 'react'
 
 import styled from 'styled-components'
 
-export const TodoActionsList = React.memo(styled.div`
+export const TodoActionsList = styled.div`
 background: white;
 width: 120px;
 
@@ -43,7 +43,7 @@ box-shadow:  0px 0px 4px 8px rgba(0,0,0,0.008);
 & li:hover {
   background: #f6f6f6;
 }
-`);
+`;
 
 export const TodoActionListAction = React.memo(styled.div`
 display: flex;
