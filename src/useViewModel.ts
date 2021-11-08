@@ -9,12 +9,12 @@ export function useViewModel(initialState: State): ViewModel {
   const [todos, setTodos] = useState(initialState);
 
   const filterTodos = useCallback((predicate: (todo: Todo) => boolean) => {
-    setTodos(todos.filter(predicate));
-  }, [todos]);
+    setTodos((old) => old.filter(predicate));
+  }, []);
 
   const mapTodos = useCallback((mapfun: (todo: Todo, index: number) => Todo) => {
-    setTodos(todos.map(mapfun));
-  }, [todos]);
+    setTodos((old) => old.map(mapfun));
+  }, []);
 
   const addTodo = useCallback((data: AddTodoData) => {
     const newTodo: Todo = {
@@ -23,8 +23,8 @@ export function useViewModel(initialState: State): ViewModel {
       ...data
     };
 
-    setTodos([...todos, newTodo]);
-  }, [todos]);
+    setTodos((old) => [...old, newTodo]);
+  }, []);
 
   const setTodo = useCallback((id: number, data: TodoData) => {
     mapTodos((todo) => {
