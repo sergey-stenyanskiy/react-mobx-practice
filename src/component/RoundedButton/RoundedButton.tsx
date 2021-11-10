@@ -18,7 +18,6 @@ export default React.memo(({
   id,
   name,
   label,
-  className,
   buttonStyle = 'primary' as const
 }: RoundedButtonProps) => (
   <StyledButtonVariant

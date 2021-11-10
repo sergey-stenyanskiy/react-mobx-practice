@@ -44,8 +44,6 @@ export function useViewModel(initialState: State): ViewModel {
     filterTodos((todo) => todo.id !== id);
   }, [filterTodos]);
 
-  const getTodo = useCallback((id: number) => todos.find((todo) => todo.id === id), [todos]);
-
   const toggleTodo = useCallback((id: number) => {
     mapTodos((todo) => {
       if (todo.id !== id) {
@@ -60,12 +58,6 @@ export function useViewModel(initialState: State): ViewModel {
       };
     });
   }, [mapTodos]);
-
-  const completeTodo = useCallback((id: number) => {
-    setTodo(id, {
-      status: TodoStatus.COMPLETED
-    });
-  }, [setTodo]);
 
   const completeAllTodos = useCallback(() => {
     mapTodos((todo) => ({ ...todo, status: TodoStatus.COMPLETED }));
