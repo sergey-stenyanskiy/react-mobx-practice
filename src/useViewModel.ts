@@ -9,11 +9,23 @@ export function useViewModel(initialState: State): ViewModel {
   const [todos, setTodos] = useState(initialState);
 
   const filterTodos = useCallback((predicate: (todo: Todo) => boolean) => {
-    setTodos((old) => old.filter(predicate));
+    setTodos((old) => {
+      if (old.length > 0) {
+        return old.filter(predicate);
+      }
+
+      return old;
+    });
   }, []);
 
   const mapTodos = useCallback((mapfun: (todo: Todo, index: number) => Todo) => {
-    setTodos((old) => old.map(mapfun));
+    setTodos((old) => {
+      if (old.length > 0) {
+        return old.map(mapfun);
+      }
+
+      return old;
+    });
   }, []);
 
   const addTodo = useCallback((data: AddTodoData) => {
@@ -60,7 +72,16 @@ export function useViewModel(initialState: State): ViewModel {
   }, [mapTodos]);
 
   const completeAllTodos = useCallback(() => {
-    mapTodos((todo) => ({ ...todo, status: TodoStatus.COMPLETED }));
+    mapTodos((todo) => {
+      if (todo.status === TodoStatus.COMPLETED) {
+        return todo;
+      }
+
+      return {
+        ...todo,
+        status: TodoStatus.COMPLETED
+      }
+    });
   }, [mapTodos]);
 
   const removeCompleted = useCallback(() => {
