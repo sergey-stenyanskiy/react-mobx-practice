@@ -11,8 +11,15 @@ type TodoListProps = {
   actions: TodoActions
 }
 
-export default React.memo(({ todos, actions } : TodoListProps) => {
-  const content = todos.length > 0 ? todos.map((todo) => <TodoListItem key={todo.id} todo={todo} actions={actions} />) : 'No tasks';
+export default React.memo(({
+  todos,
+  actions
+} : TodoListProps) => {
+  // eslint-disable-next-line arrow-body-style
+  const content = todos.length > 0 ? todos.map((todo) => {
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    return <TodoListItem key={todo.id} {...todo} actions={actions} />
+  }) : 'No tasks';
 
   return (
     <TodoList className="todo-list">
