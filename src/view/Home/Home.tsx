@@ -1,8 +1,8 @@
-import React, { useMemo } from 'react'
+import React, { useContext, useMemo } from 'react'
 
 import { observer } from 'mobx-react-lite'
 
-import store from '../../store'
+import TodosContext from '../../TodosContext'
 
 import TodoList from '../../component/TodoList/TodoList'
 import AddTodoForm from '../../component/AddTodoForm/AddTodoForm'
@@ -12,11 +12,19 @@ import RoundedButton from '../../component/RoundedButton/RoundedButton'
 import { Home, Actions } from './Home.styles'
 
 export default observer(() => {
+  const store = useContext(TodosContext);
+
+  if (!store) {
+    return (
+      <>Error initializing store!</>
+    );
+  }
+
   const todoActions = useMemo(() => ({
     toggle: store.toggleTodo,
     remove: store.removeTodo,
     edit: store.editTodo
-  }), []);
+  }), [store.editTodo, store.toggleTodo, store.removeTodo]);
 
   return (
     <Home>
