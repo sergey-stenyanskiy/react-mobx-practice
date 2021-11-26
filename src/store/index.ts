@@ -9,16 +9,6 @@ const EMPTY_TODOS: State = [];
 export default observable(
   {
     todos: EMPTY_TODOS,
-    filterTodos(predicate: (todo: Todo) => boolean) {
-      if (this.todos.length > 0) {
-        this.todos = this.todos.filter(predicate);
-      }
-    },
-    mapTodos(mapFun: (todo: Todo, index: number) => Todo) {
-      if (this.todos.length > 0) {
-        this.todos = this.todos.map(mapFun);
-      }
-    },
     addTodo(data: AddTodoData) {
       const newTodo: Todo = {
         id: genId.next(),
@@ -26,66 +16,57 @@ export default observable(
         ...data
       };
 
-      this.todos = [...this.todos, newTodo];
+      this.todos.push(newTodo);
     },
     setTodo(id: number, data: TodoData) {
-      this.mapTodos((todo) => {
-        if (todo.id === id) {
-          return { ...todo, ...data };
-        }
+      const index = this.todos.findIndex((todo) => todo.id === id);
 
-        return todo;
-      });
+      if (index !== -1) {
+        this.todos[index] = { ...this.todos[index], ...data };
+      }
     },
     editTodo(id: number, data: EditTodoData) {
       this.setTodo(id, data);
     },
     removeTodo(id: number) {
-      this.filterTodos((todo) => todo.id !== id);
+      const index = this.todos.findIndex((todo) => todo.id === id);
+
+      if (index !== -1) {
+        this.todos.splice(index, 1);
+      }
     },
     toggleTodo(id: number) {
-      this.mapTodos((todo) => {
-        if (todo.id !== id) {
-          return todo;
-        }
+      const index = this.todos.findIndex((todo) => todo.id === id);
 
-        const status = todo.status === TodoStatus.ACTIVE ? TodoStatus.COMPLETED : TodoStatus.ACTIVE;
+      if (index !== -1) {
+        const status = this.todos[index].status === TodoStatus.ACTIVE
+          ? TodoStatus.COMPLETED
+          : TodoStatus.ACTIVE;
 
-        return {
-          ...todo,
-          status
-        };
-      });
+        this.todos[index] = { ...this.todos[index], status };
+      }
     },
     completeAllTodos() {
-      this.mapTodos((todo) => {
-        if (todo.status === TodoStatus.COMPLETED) {
-          return todo;
-        }
-
-        return {
-          ...todo,
-          status: TodoStatus.COMPLETED
-        };
-      });
+      for (const todo of this.todos) {
+        todo.status = TodoStatus.COMPLETED;
+      }
     },
     removeCompleted() {
-      this.filterTodos((todo) => todo.status !== TodoStatus.COMPLETED);
-    },
-    get actions() {
-      return {
-        add: this.addTodo,
-        remove: this.removeTodo,
-        toggle: this.toggleTodo,
-        completeAll: this.completeAllTodos,
-        removeCompleted: this.removeCompleted,
+      const idsToRemove: number[] = [];
+
+      for (const todo of this.todos) {
+        if (todo.status === TodoStatus.COMPLETED) {
+          idsToRemove.push(todo.id);
+        }
       }
-    }
+
+      for (const id of idsToRemove) {
+        this.removeTodo(id);
+      }
+    },
   },
   {
     todos: observable,
-    filterTodos: action.bound,
-    mapTodos: action.bound,
     completeAllTodos: action.bound,
     removeCompleted: action.bound,
     toggleTodo: action.bound,
@@ -93,6 +74,5 @@ export default observable(
     removeTodo: action.bound,
     addTodo: action.bound,
     setTodo: action.bound,
-    actions: computed
   },
 )

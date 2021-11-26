@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { observer } from 'mobx-react-lite'
+
 import { Todo, TodoActions } from '../../types/types'
 
 import TodoListItem from '../TodoListItem/TodoListItem'
@@ -11,7 +13,7 @@ type TodoListProps = {
   actions: TodoActions
 }
 
-export default React.memo(({
+export default React.memo(observer(({
   todos,
   actions
 } : TodoListProps) => {
@@ -26,4 +28,4 @@ export default React.memo(({
       {content}
     </TodoList>
   );
-})
+}))
